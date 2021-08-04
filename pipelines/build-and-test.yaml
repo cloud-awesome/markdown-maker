@@ -17,7 +17,7 @@ steps:
       SonarCloud: 'Customisation'
       organization: 'cloud-awesome'
       scannerMode: 'MSBuild'
-      projectKey: 'Markdown-Maker'
+      projectKey: 'markdown-maker'
       projectName: 'markdown-maker'
 
   - task: NuGetCommand@2
