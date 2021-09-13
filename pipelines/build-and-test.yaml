@@ -39,7 +39,7 @@ steps:
     displayName: Execute Unit Tests
     inputs:
       testSelector: 'testAssemblies'
-      testAssemblyVer2: '*.Tests.dll'
+      testAssemblyVer2: '**\*.Tests.dll'
       searchFolder: '$(System.DefaultWorkingDirectory)'
       codeCoverageEnabled: true
       testRunTitle: '$(Build.BuildNumber)'
