@@ -39,9 +39,8 @@ steps:
     displayName: Execute Unit Tests
     inputs:
       testSelector: 'testAssemblies'
-      testAssemblyVer2: 'src/CloudAwesome.Markdown/CloudAwesome.MarkdownMaker.Tests\bin\Release\CloudAwesome.MarkdownMaker.Tests.dll'
+      testAssemblyVer2: '*.Tests.dll'
       searchFolder: '$(System.DefaultWorkingDirectory)'
-      testFiltercriteria: 'Category!=IgnoreInPipeline'
       codeCoverageEnabled: true
       testRunTitle: '$(Build.BuildNumber)'
 
