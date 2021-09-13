@@ -1,3 +1,5 @@
+name: $(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
+
 pool:
   vmImage: 'windows-latest'
 
