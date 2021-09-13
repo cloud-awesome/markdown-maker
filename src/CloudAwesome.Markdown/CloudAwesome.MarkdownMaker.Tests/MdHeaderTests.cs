@@ -18,7 +18,7 @@ namespace CloudAwesome.MarkdownMaker.Tests
             var header = new MdHeader(text, level);
             var actualResult = header.Markdown;
             
-            actualResult.Should().Be(expectedResult);
+            actualResult.Should().Be($"{expectedResult}{Environment.NewLine}");
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace CloudAwesome.MarkdownMaker.Tests
 
             var actualResult = header.Markdown;
 
-            actualResult.Should().Be(expectedResult);
+            actualResult.Should().Be($"{expectedResult}{Environment.NewLine}");
         }
     }
 }

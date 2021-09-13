@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO.Abstractions.TestingHelpers;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace CloudAwesome.MarkdownMaker.Tests
@@ -7,13 +9,35 @@ namespace CloudAwesome.MarkdownMaker.Tests
     public class MdDocumentTests
     {
         [Test]
+        public void Valid_Inputs_Generates_Valid_Document()
+        {
+            var outputFilePath = "C:\\output1.md";
+
+            var mockFileSystem = new MockFileSystem();
+            var document = new MdDocument(outputFilePath, mockFileSystem);
+
+            document
+                .Add(new MdHeader("The header", 1))
+                .Save();
+
+            var savedDocument = mockFileSystem.GetFile(outputFilePath);
+
+            savedDocument.TextContents.Should().Be($"# The header{Environment.NewLine}{Environment.NewLine}");
+
+        }
+        
+        [Test]
         public void InitialOutputTester()
         {
             // TODO - get rid of me and replace with proper tests once the immediate requirement is out of the way! ;) 
             
-            var outputFilePath = "C:\\source\\output1.md";
+            var outputFilePath = "C:\\output.md";
+            //var outputFilePath = "C:\\source\\output1.md";
 
-            var document = new MdDocument(outputFilePath);
+            var mockFileSystem = new MockFileSystem();
+            var document = new MdDocument(outputFilePath, mockFileSystem);
+            //var document = new MdDocument(outputFilePath);
+
             var firstHeader = new MdHeader("The header", 1);
             var secondHeader = new MdHeader("Second Header", 2);
 
@@ -68,7 +92,19 @@ namespace CloudAwesome.MarkdownMaker.Tests
                 .AddLine(new MdPlainText("All the world’s a stage, and all the men and women merely players."))
                 .AddLine(new MdPlainText("They have their exits and their entrances;"))
                 .AddLine(new MdPlainText("And one man in his time plays many parts."));
+
+            var bulletList = new MdList(MdListType.Unordered)
+                .AddItem(new MdPlainText("First point"))
+                .AddItem(new MdPlainText("Second point"))
+                .AddItem(new MdPlainText("Third point"))
+                .AddItem(new MdPlainText("Fourth point"));
             
+            var numberedList = new MdList(MdListType.Ordered)
+                .AddItem(new MdPlainText("First point"))
+                .AddItem(new MdPlainText("Second point"))
+                .AddItem(new MdPlainText("Third point"))
+                .AddItem(new MdPlainText("Fourth point"));
+
             document
                 .Add(docFxHeader)
                 .Add(firstHeader)
@@ -84,9 +120,9 @@ namespace CloudAwesome.MarkdownMaker.Tests
                 .Add(codeBlock)
                 .Add(table)
                 .Add(quote)
+                .Add(bulletList)
+                .Add(numberedList)
                 .Save();
-
         }
-        
     }
 }

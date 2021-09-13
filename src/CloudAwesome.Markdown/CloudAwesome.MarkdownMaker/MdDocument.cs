@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Abstractions;
 
 namespace CloudAwesome.MarkdownMaker
 {
@@ -9,29 +10,34 @@ namespace CloudAwesome.MarkdownMaker
         public string FilePath { get; set; }
 
         public List<IDocumentPart> DocumentParts { get; set; }
-        
-        public MdDocument(string filePath)
+
+        private readonly IFileSystem _fileSystem;
+
+        public MdDocument(string filePath) : this(filePath, new FileSystem()) { }
+
+        public MdDocument(string filePath, IFileSystem fileSystem)
         {
             FilePath = filePath;
+            _fileSystem = fileSystem;
 
             DocumentParts = new List<IDocumentPart>();
         }
         
-        public MdDocument Save()
-        {
-            File.Delete(FilePath);
-            
-            foreach (var documentPart in DocumentParts)
-            {
-                File.AppendAllText(FilePath, documentPart.Markdown + Environment.NewLine);
-            }
-
-            return this;
-        }
-
         public MdDocument Add(IDocumentPart documentPart)
         {
             DocumentParts.Add(documentPart);
+            return this;
+        }
+        
+        public MdDocument Save()
+        {
+            _fileSystem.File.Delete(FilePath);
+            
+            foreach (var documentPart in DocumentParts)
+            {
+                _fileSystem.File.AppendAllText(FilePath, documentPart.Markdown + Environment.NewLine);
+            }
+
             return this;
         }
     }
