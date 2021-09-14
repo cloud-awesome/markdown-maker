@@ -25,7 +25,7 @@ namespace CloudAwesome.MarkdownMaker.Tests
             var text = new MdItalicText(inputValue);
             Func<string> function = () => text.Markdown;
 
-            function.Should().Throw<InputValidationException>();
+            function.Should().Throw<MdInputValidationException>();
         }
     }
 }

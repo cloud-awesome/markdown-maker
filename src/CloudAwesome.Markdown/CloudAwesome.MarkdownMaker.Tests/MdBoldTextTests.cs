@@ -27,7 +27,7 @@ namespace CloudAwesome.MarkdownMaker.Tests
             var text = new MdBoldText("");
             Func<string> function = () => text.Markdown;
 
-            function.Should().Throw<InputValidationException>();
+            function.Should().Throw<MdInputValidationException>();
         }
         
         // TODO - text can be changed after construction

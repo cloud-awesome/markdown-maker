@@ -32,7 +32,7 @@ namespace CloudAwesome.MarkdownMaker
 
             if (!result.IsValid)
             {
-                throw new InputValidationException(result.ToString());
+                throw new MdInputValidationException(result.ToString());
             }
         }
     }

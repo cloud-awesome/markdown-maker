@@ -25,7 +25,7 @@ namespace CloudAwesome.MarkdownMaker.Tests
             var sut = new MdImage("", "");
             Func<string> function = () => sut.Markdown;
 
-            function.Should().Throw<InputValidationException>();
+            function.Should().Throw<MdInputValidationException>();
         }
         
     }

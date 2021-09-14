@@ -41,7 +41,7 @@ namespace CloudAwesome.MarkdownMaker.Tests
             var codeBlock = new MdCodeBlock("");
             Func<string> function = () => codeBlock.Markdown;
 
-            function.Should().Throw<InputValidationException>();
+            function.Should().Throw<MdInputValidationException>();
         }
         
     }

@@ -29,7 +29,7 @@ namespace CloudAwesome.MarkdownMaker.Tests
             var header = new MdHeader(text, level);
             Func<string> function = () => header.Markdown;
 
-            function.Should().Throw<InputValidationException>();
+            function.Should().Throw<MdInputValidationException>();
         }
 
         [Test]

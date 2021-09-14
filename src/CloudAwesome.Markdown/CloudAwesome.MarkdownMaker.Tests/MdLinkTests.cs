@@ -27,7 +27,7 @@ namespace CloudAwesome.MarkdownMaker.Tests
             var sut = new MdLink(text, url);
             Func<string> function = () => sut.Markdown;
 
-            function.Should().Throw<InputValidationException>();
+            function.Should().Throw<MdInputValidationException>();
         }
         
     }

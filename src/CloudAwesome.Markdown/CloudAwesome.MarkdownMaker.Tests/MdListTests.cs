@@ -26,7 +26,7 @@ namespace CloudAwesome.MarkdownMaker.Tests
             var list = new MdList(MdListType.Ordered);
             Func<string> function = () => list.Markdown;
 
-            function.Should().Throw<InputValidationException>();
+            function.Should().Throw<MdInputValidationException>();
         }
     }
 }

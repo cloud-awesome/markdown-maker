@@ -1,22 +1,17 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CloudAwesome.MarkdownMaker.Exceptions
 {
-    public class InputValidationException: Exception
+    [ExcludeFromCodeCoverage]
+    public class MdInputValidationException: Exception
     {
-        public InputValidationException()
-        {
-            
-        }
+        public MdInputValidationException() { }
         
-        public InputValidationException(string message)
-            : base(message)
-        {
-        }
+        public MdInputValidationException(string message)
+            : base(message) { }
 
-        public InputValidationException(string message, Exception inner)
-            : base(message, inner)
-        {
-        }
+        public MdInputValidationException(string message, Exception inner)
+            : base(message, inner) { }
     }
 }
