@@ -27,15 +27,19 @@ namespace CloudAwesome.MarkdownMaker.Tests
         }
         
         [Test]
+        //[Ignore("Just used for manual testing output")]
         public void InitialOutputTester()
         {
             // TODO - get rid of me and replace with proper tests once the immediate requirement is out of the way! ;) 
             
-            var outputFilePath = "C:\\output.md";
-            //var outputFilePath = "C:\\source\\output1.md";
-
             var mockFileSystem = new MockFileSystem();
+            
+            // Mocked output
+            var outputFilePath = "C:\\output.md";
             var document = new MdDocument(outputFilePath, mockFileSystem);
+            
+            // Real output
+            //var outputFilePath = "C:\\source\\output1.md";
             //var document = new MdDocument(outputFilePath);
 
             var firstHeader = new MdHeader("The header", 1);

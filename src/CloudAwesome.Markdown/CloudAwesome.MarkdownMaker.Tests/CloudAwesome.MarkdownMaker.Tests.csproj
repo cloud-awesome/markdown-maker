@@ -63,6 +63,9 @@
         <Compile Include="MdHeaderTests.cs" />
         <Compile Include="MdHorizontalLineTests.cs" />
         <Compile Include="MdImageTests.cs" />
+        <Compile Include="MdItalicTextTests.cs" />
+        <Compile Include="MdLinkTests.cs" />
+        <Compile Include="MdListTests.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>

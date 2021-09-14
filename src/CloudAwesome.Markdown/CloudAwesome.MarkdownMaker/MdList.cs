@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CloudAwesome.MarkdownMaker.Exceptions;
+using CloudAwesome.MarkdownMaker.Validators;
 
 namespace CloudAwesome.MarkdownMaker
 {
@@ -13,6 +15,8 @@ namespace CloudAwesome.MarkdownMaker
         {
             get
             {
+                this.Validate();
+                
                 var stringBuilder = new StringBuilder();
                 var listPrefixMarkdown = ListType == MdListType.Ordered ? "1." : "-";
 
@@ -36,6 +40,17 @@ namespace CloudAwesome.MarkdownMaker
             Items.Add(item);
             
             return this;
+        }
+        
+        private void Validate()
+        {
+            var validator = new MdListValidator();
+            var result = validator.Validate(this);
+
+            if (!result.IsValid)
+            {
+                throw new InputValidationException(result.ToString());
+            }
         }
     }
 }

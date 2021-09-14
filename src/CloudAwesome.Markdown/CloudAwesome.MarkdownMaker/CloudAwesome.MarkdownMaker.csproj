@@ -68,6 +68,9 @@
         <Compile Include="Validators\MdCodeBlockValidator.cs" />
         <Compile Include="Validators\MdHeaderValidator.cs" />
         <Compile Include="Validators\MdImageValidator.cs" />
+        <Compile Include="Validators\MdItalicTextValidator.cs" />
+        <Compile Include="Validators\MdLinkValidator.cs" />
+        <Compile Include="Validators\MdListValidator.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
