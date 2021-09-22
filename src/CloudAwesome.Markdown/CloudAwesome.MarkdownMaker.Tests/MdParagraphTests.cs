@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml;
 using CloudAwesome.MarkdownMaker.Exceptions;
 using FluentAssertions;
 using NUnit.Framework;
@@ -27,6 +28,25 @@ namespace CloudAwesome.MarkdownMaker.Tests
             var actualResult = paragraph.Markdown;
 
             actualResult.Should().Be($"{InputText} {Environment.NewLine}");
+        }
+
+        [Test]
+        public void Paragraph_Constructed_With_Parts_Returns_Valid_Markdown()
+        {
+            var paragraph = new MdParagraph
+            {
+                DocumentParts =
+                {
+                    new MdPlainText("Line 1"),
+                    new MdPlainText("Line 2")
+                }
+            };
+
+            var actualResult = paragraph.Markdown;
+
+            actualResult.Should().Be($"Line 1 " +
+                                     $"Line 2 " +
+                                     $"{Environment.NewLine}");
         }
 
         [Test]

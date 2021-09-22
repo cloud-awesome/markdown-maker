@@ -6,7 +6,7 @@ namespace CloudAwesome.MarkdownMaker.Validators
     {
         public MdQuoteValidator()
         {
-            RuleFor(paragraph => paragraph.DocumentParts.Count).GreaterThan(0)
+            RuleFor(quote => quote.DocumentParts.Count).GreaterThan(0)
                 .WithMessage("The quote element is empty. " +
                              "Add items to the quote before writing to the document");
         }

@@ -9,7 +9,7 @@ namespace CloudAwesome.MarkdownMaker
     public class MdList: IDocumentPart
     {
         public List<MdPlainText> Items { get; set; }
-        public MdListType ListType { get; set; }
+        public MdListType? ListType { get; set; }
 
         public string Markdown
         {
@@ -33,6 +33,11 @@ namespace CloudAwesome.MarkdownMaker
         {
             Items = new List<MdPlainText>();
             ListType = listType;
+        }
+
+        public MdList()
+        {
+            Items = new List<MdPlainText>();
         }
 
         public MdList AddItem(MdPlainText item)
