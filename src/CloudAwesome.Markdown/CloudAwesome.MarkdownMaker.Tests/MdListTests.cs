@@ -11,6 +11,7 @@ namespace CloudAwesome.MarkdownMaker.Tests
         [Test]
         [TestCase(MdListType.Ordered, "1. First Item ")]
         [TestCase(MdListType.Unordered, "- First Item ")]
+        [TestCase(MdListType.Todo, "- [ ] First Item ")]
         public void Valid_Input_Generates_Correct_Markdown(MdListType listType, string expectedOutput)
         {
             var list = new MdList(listType)

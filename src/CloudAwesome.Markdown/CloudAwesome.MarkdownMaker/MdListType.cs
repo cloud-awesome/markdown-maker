@@ -3,6 +3,7 @@
     public enum MdListType
     {
         Ordered = 0,
-        Unordered = 1
+        Unordered = 1,
+        Todo = 2
     }
 }

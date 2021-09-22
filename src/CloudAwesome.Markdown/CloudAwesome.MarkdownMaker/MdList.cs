@@ -18,8 +18,14 @@ namespace CloudAwesome.MarkdownMaker
                 this.Validate();
                 
                 var stringBuilder = new StringBuilder();
-                var listPrefixMarkdown = ListType == MdListType.Ordered ? "1." : "-";
 
+                string listPrefixMarkdown = ListType switch
+                {
+                    MdListType.Ordered => "1.",
+                    MdListType.Unordered => "-",
+                    MdListType.Todo => "- [ ]"
+                };
+                
                 foreach (var item in Items)
                 {
                     stringBuilder.Append($"{listPrefixMarkdown} {item.Markdown}{Environment.NewLine}");
