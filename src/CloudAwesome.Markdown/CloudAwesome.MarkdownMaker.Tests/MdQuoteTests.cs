@@ -1,8 +1,6 @@
 ﻿using System;
 using CloudAwesome.MarkdownMaker.Exceptions;
-using CloudAwesome.MarkdownMaker.Validators;
 using FluentAssertions;
-using NUnit;
 using NUnit.Framework;
 
 namespace CloudAwesome.MarkdownMaker.Tests

@@ -8,13 +8,13 @@ namespace CloudAwesome.MarkdownMaker.Tests
     [TestFixture]
     public class MdCodeBlockTests
     {
-        private const string code = "var code = new MdCodeBlock";
-        private const string language = "csharp";
+        private const string Code = "var code = new MdCodeBlock";
+        private const string Language = "csharp";
         
         [Test]
         public void Code_Block_Returns_Valid_Markdown()
         {
-            var sut = new MdCodeBlock(code, language);
+            var sut = new MdCodeBlock(Code, Language);
             var actualOutput = sut.Markdown;
 
             actualOutput.Should().Be($"```csharp{Environment.NewLine}" +
@@ -25,7 +25,7 @@ namespace CloudAwesome.MarkdownMaker.Tests
         [Test]
         public void Language_Is_Not_Mandatory_And_Returns_Valid_Markdown()
         {
-            var sut = new MdCodeBlock(code);
+            var sut = new MdCodeBlock(Code);
             var actualOutput = sut.Markdown;
 
             actualOutput.Should().Be($"```{Environment.NewLine}" +
