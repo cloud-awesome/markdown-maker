@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CloudAwesome.MarkdownMaker.Exceptions;
+using CloudAwesome.MarkdownMaker.Validators;
 
 namespace CloudAwesome.MarkdownMaker
 {
@@ -14,6 +16,8 @@ namespace CloudAwesome.MarkdownMaker
         {
             get
             {
+                this.Validate();
+                
                 var stringBuilder = new StringBuilder();
                 
                 // Column headers
@@ -57,6 +61,13 @@ namespace CloudAwesome.MarkdownMaker
 
             return this;
         }
+        
+        public MdTable AddColumn(string columnHeader)
+        {
+            ColumnsHeaders.Add(new MdPlainText(columnHeader));
+
+            return this;
+        }
 
         public MdTable AddRow(MdTableRow tableRow)
         {
@@ -65,5 +76,15 @@ namespace CloudAwesome.MarkdownMaker
             return this;
         }
         
+        private void Validate()
+        {
+            var validator = new MdTableValidator();
+            var result = validator.Validate(this);
+
+            if (!result.IsValid)
+            {
+                throw new MdInputValidationException(result.ToString());
+            }
+        }
     }
 }

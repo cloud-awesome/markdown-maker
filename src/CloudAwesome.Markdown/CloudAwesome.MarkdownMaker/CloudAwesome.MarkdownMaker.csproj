@@ -46,7 +46,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Exceptions\InputValidationException.cs" />
+        <Compile Include="Exceptions\MdInputValidationException.cs" />
         <Compile Include="IDocumentPart.cs" />
         <Compile Include="MdCodeBlock.cs" />
         <Compile Include="MdDocument.cs" />
@@ -71,9 +71,17 @@
         <Compile Include="Validators\MdItalicTextValidator.cs" />
         <Compile Include="Validators\MdLinkValidator.cs" />
         <Compile Include="Validators\MdListValidator.cs" />
+        <Compile Include="Validators\MdParagraphValidator.cs" />
+        <Compile Include="Validators\MdPlainTextValidator.cs" />
+        <Compile Include="Validators\MdQuoteValidator.cs" />
+        <Compile Include="Validators\MdTableRowValidator.cs" />
+        <Compile Include="Validators\MdTableValidator.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="CloudAwesome.MarkdownMaker.nuspec" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

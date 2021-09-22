@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using CloudAwesome.MarkdownMaker.Exceptions;
+using CloudAwesome.MarkdownMaker.Validators;
 
 namespace CloudAwesome.MarkdownMaker
 {
@@ -13,6 +14,8 @@ namespace CloudAwesome.MarkdownMaker
         {
             get
             {
+                this.Validate();
+                
                 var stringBuilder = new StringBuilder();
 
                 foreach (var documentPart in DocumentParts)
@@ -43,6 +46,17 @@ namespace CloudAwesome.MarkdownMaker
             DocumentParts.Add(documentPart);
 
             return this;
+        }
+        
+        private void Validate()
+        {
+            var validator = new MdParagraphValidator();
+            var result = validator.Validate(this);
+
+            if (!result.IsValid)
+            {
+                throw new MdInputValidationException(result.ToString());
+            }
         }
     }
 }

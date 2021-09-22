@@ -127,6 +127,9 @@ namespace CloudAwesome.MarkdownMaker.Tests
                 .Add(bulletList)
                 .Add(numberedList)
                 .Save();
+            
+            var savedDocument = mockFileSystem.GetFile(outputFilePath);
+            savedDocument.Should().NotBeNull();
         }
     }
 }

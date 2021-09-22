@@ -66,6 +66,11 @@
         <Compile Include="MdItalicTextTests.cs" />
         <Compile Include="MdLinkTests.cs" />
         <Compile Include="MdListTests.cs" />
+        <Compile Include="MdParagraphTests.cs" />
+        <Compile Include="MdPlainTextTests.cs" />
+        <Compile Include="MdQuoteTests.cs" />
+        <Compile Include="MdTableRowTests.cs" />
+        <Compile Include="MdTableTests.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>

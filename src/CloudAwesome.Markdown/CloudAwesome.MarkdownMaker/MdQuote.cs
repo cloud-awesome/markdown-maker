@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CloudAwesome.MarkdownMaker.Exceptions;
+using CloudAwesome.MarkdownMaker.Validators;
 
 namespace CloudAwesome.MarkdownMaker
 {
@@ -12,6 +14,8 @@ namespace CloudAwesome.MarkdownMaker
         {
             get
             {
+                this.Validate();
+                
                 var stringBuilder = new StringBuilder();
 
                 foreach (var documentPart in DocumentParts)
@@ -32,11 +36,29 @@ namespace CloudAwesome.MarkdownMaker
             DocumentParts = new List<MdPlainText>();
         }
 
+        public MdQuote(string inputText)
+        {
+            DocumentParts = new List<MdPlainText>();
+            
+            this.AddLine(new MdPlainText(inputText));
+        }
+
         public MdQuote AddLine(MdPlainText line)
         {
             DocumentParts.Add(line);
 
             return this;
+        }
+        
+        private void Validate()
+        {
+            var validator = new MdQuoteValidator();
+            var result = validator.Validate(this);
+
+            if (!result.IsValid)
+            {
+                throw new MdInputValidationException(result.ToString());
+            }
         }
     }
 }
