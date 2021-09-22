@@ -58,21 +58,18 @@ namespace CloudAwesome.MarkdownMaker
         public MdTable AddColumn(MdPlainText columnHeader)
         {
             ColumnsHeaders.Add(columnHeader);
-
             return this;
         }
         
         public MdTable AddColumn(string columnHeader)
         {
             ColumnsHeaders.Add(new MdPlainText(columnHeader));
-
             return this;
         }
 
         public MdTable AddRow(MdTableRow tableRow)
         {
             Rows.Add(tableRow);
-
             return this;
         }
         
