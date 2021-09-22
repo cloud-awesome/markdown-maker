@@ -44,7 +44,12 @@ namespace CloudAwesome.MarkdownMaker
         public MdParagraph Add(IDocumentPart documentPart)
         {
             DocumentParts.Add(documentPart);
-
+            return this;
+        }
+        
+        public MdParagraph Add(string inputString)
+        {
+            DocumentParts.Add(new MdPlainText(inputString));
             return this;
         }
         

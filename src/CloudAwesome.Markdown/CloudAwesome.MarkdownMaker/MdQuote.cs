@@ -39,14 +39,18 @@ namespace CloudAwesome.MarkdownMaker
         public MdQuote(string inputText)
         {
             DocumentParts = new List<MdPlainText>();
-            
             this.AddLine(new MdPlainText(inputText));
         }
 
         public MdQuote AddLine(MdPlainText line)
         {
             DocumentParts.Add(line);
-
+            return this;
+        }
+        
+        public MdQuote AddLine(string line)
+        {
+            DocumentParts.Add(new MdPlainText(line));
             return this;
         }
         

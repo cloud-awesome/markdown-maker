@@ -43,7 +43,12 @@ namespace CloudAwesome.MarkdownMaker
         public MdList AddItem(MdPlainText item)
         {
             Items.Add(item);
-            
+            return this;
+        }
+        
+        public MdList AddItem(string item)
+        {
+            Items.Add(new MdPlainText(item));
             return this;
         }
         

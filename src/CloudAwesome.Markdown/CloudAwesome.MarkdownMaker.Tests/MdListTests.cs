@@ -23,6 +23,18 @@ namespace CloudAwesome.MarkdownMaker.Tests
         [Test]
         [TestCase(MdListType.Ordered, "1. First Item ")]
         [TestCase(MdListType.Unordered, "- First Item ")]
+        public void Add_Item_Accepts_Plain_String_Input(MdListType listType, string expectedOutput)
+        {
+            var list = new MdList(listType)
+                .AddItem("First Item");
+            var actualResult = list.Markdown;
+
+            actualResult.Should().Be($"{expectedOutput}{Environment.NewLine}");
+        }
+
+        [Test]
+        [TestCase(MdListType.Ordered, "1. First Item ")]
+        [TestCase(MdListType.Unordered, "- First Item ")]
         public void List_Constructed_With_List_Returns_Valid_Markdown(MdListType listType, string expectedOutput)
         {
             var list = new MdList

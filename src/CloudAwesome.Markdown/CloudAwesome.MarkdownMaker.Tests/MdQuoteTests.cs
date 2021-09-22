@@ -25,11 +25,27 @@ namespace CloudAwesome.MarkdownMaker.Tests
                                      $"{Environment.NewLine}");
         }
         
+        
         [Test]
         public void Quote_With_Fluent_Content_Returns_Valid_Markdown()
         {
             var quote = new MdQuote()
                 .AddLine(new MdPlainText(InputText));
+            
+            var actualResult = quote.Markdown;
+
+            actualResult.Should().Be($"> {InputText} " +
+                                     $"{Environment.NewLine}" +
+                                     $"> " +
+                                     $"{Environment.NewLine}" +
+                                     $"{Environment.NewLine}");
+        }
+
+        [Test]
+        public void Add_Line_Accepts_String_Constructor()
+        {
+            var quote = new MdQuote()
+                .AddLine(InputText);
             
             var actualResult = quote.Markdown;
 

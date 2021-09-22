@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Xml;
 using CloudAwesome.MarkdownMaker.Exceptions;
 using FluentAssertions;
 using NUnit.Framework;
@@ -25,6 +24,16 @@ namespace CloudAwesome.MarkdownMaker.Tests
         {
             var paragraph = new MdParagraph()
                 .Add(new MdPlainText(InputText));
+            var actualResult = paragraph.Markdown;
+
+            actualResult.Should().Be($"{InputText} {Environment.NewLine}");
+        }
+
+        [Test]
+        public void Add_Accepts_String_Input_Constructor()
+        {
+            var paragraph = new MdParagraph()
+                .Add(InputText);
             var actualResult = paragraph.Markdown;
 
             actualResult.Should().Be($"{InputText} {Environment.NewLine}");
