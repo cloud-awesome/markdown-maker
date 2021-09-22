@@ -73,7 +73,6 @@ namespace CloudAwesome.MarkdownMaker.Tests
                     new MdPlainText("Test items")
                 }
             };
-            
             Func<string> function = () => list.Markdown;
 
             function.Should().Throw<MdInputValidationException>();
