@@ -23,7 +23,9 @@ namespace CloudAwesome.MarkdownMaker
                 {
                     MdListType.Ordered => "1.",
                     MdListType.Unordered => "-",
-                    MdListType.Todo => "- [ ]"
+                    MdListType.Todo => "- [ ]",
+                    null => throw new ArgumentOutOfRangeException(),
+                    _ => throw new ArgumentOutOfRangeException()
                 };
                 
                 foreach (var item in Items)

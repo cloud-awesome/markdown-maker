@@ -42,22 +42,21 @@ namespace CloudAwesome.MarkdownMaker.Tests
             //var outputFilePath = "C:\\source\\output1.md";
             //var document = new MdDocument(outputFilePath);
 
-            var firstHeader = new MdHeader("The header", 1);
-            var secondHeader = new MdHeader("Second Header", 2);
+            var firstHeader = new MdHeader("The h1 header", 1);
+            var secondHeader = new MdHeader("The h2 Header", 2);
 
-            var newFangledParagraph = new MdParagraph()
-                .Add(new MdPlainText("This is a line of text."))
-                .Add(new MdPlainText("And here's some more"));
-
-            var differentText = new MdParagraph()
-                .Add(new MdItalicText("This is a line of Italic text."))
-                .Add(new MdBoldText("And here's bold more"));
+            // Include different types of text in your paragraph
+            var paragraph = new MdParagraph()
+                    .Add("This is a line of text.")
+                    .Add(new MdPlainText("And here's some more"))
+                    .Add(new MdItalicText("This is a line of Italic text."))
+                    .Add(new MdBoldText("And here's more in bold!"));
 
             var paragraphWithLink = new MdParagraph()
-                .Add(new MdPlainText("Look at this text."))
-                .Add(new MdPlainText("Please click"))
+                .Add("Look at this text.")
+                .Add("Please click")
                 .Add(new MdLink("here", "https://google.com"))
-                .Add(new MdPlainText("to see more"));
+                .Add("to see more");
 
             var image = new MdImage("here", "https://google.com");
             
@@ -65,23 +64,29 @@ namespace CloudAwesome.MarkdownMaker.Tests
                 "---" + Environment.NewLine +
                 "uid: this_is_a_tester" + Environment.NewLine +
                 "---";
-
             var docFxHeader = new MdPlainText(docfxMetadata);
 
             var table = new MdTable()
-                .AddColumn(new MdPlainText("First Column"))
-                .AddColumn(new MdPlainText("Second Column"))
-                .AddColumn(new MdPlainText("Third Column"));
+                .AddColumn("First Column")
+                .AddColumn("Second Column")
+                .AddColumn("Third Column");
 
             table
                 .AddRow(new MdTableRow()
-                    .AddCell(new MdPlainText("1"))
-                    .AddCell(new MdPlainText("2"))
-                    .AddCell(new MdPlainText("3")))
-                .AddRow(new MdTableRow()
-                    .AddCell(new MdPlainText("4"))
-                    .AddCell(new MdPlainText("5"))
-                    .AddCell(new MdPlainText("6")));
+                    // Use AddCell ...
+                    .AddCell("1")
+                    .AddCell("2")
+                    .AddCell("3"))
+                .AddRow(new MdTableRow
+                {
+                    // ... or use a Cell object
+                    Cells =
+                    {
+                        new MdPlainText("4"),
+                        new MdPlainText("5"),
+                        new MdPlainText("6")
+                    }
+                });
 
             var code =
                 "using System;" + Environment.NewLine +
@@ -93,39 +98,43 @@ namespace CloudAwesome.MarkdownMaker.Tests
             var codeBlock = new MdCodeBlock(code, "csharp");
 
             var quote = new MdQuote()
-                .AddLine(new MdPlainText("All the world’s a stage, and all the men and women merely players."))
-                .AddLine(new MdPlainText("They have their exits and their entrances;"))
-                .AddLine(new MdPlainText("And one man in his time plays many parts."));
+                .AddLine("All the world’s a stage, and all the men and women merely players.")
+                .AddLine("They have their exits and their entrances;")
+                .AddLine("And one man in his time plays many parts.");
 
             var bulletList = new MdList(MdListType.Unordered)
-                .AddItem(new MdPlainText("First point"))
-                .AddItem(new MdPlainText("Second point"))
-                .AddItem(new MdPlainText("Third point"))
-                .AddItem(new MdPlainText("Fourth point"));
+                .AddItem("First point")
+                .AddItem("Second point")
+                .AddItem("Third point")
+                .AddItem("Fourth point");
             
             var numberedList = new MdList(MdListType.Ordered)
-                .AddItem(new MdPlainText("First point"))
-                .AddItem(new MdPlainText("Second point"))
-                .AddItem(new MdPlainText("Third point"))
-                .AddItem(new MdPlainText("Fourth point"));
+                .AddItem("First point")
+                .AddItem("Second point")
+                .AddItem("Third point")
+                .AddItem("Fourth point");
 
+            var todoList = new MdList(MdListType.Todo)
+                .AddItem("Build something")
+                .AddItem("Test it")
+                .AddItem("Push it");
+            
             document
                 .Add(docFxHeader)
                 .Add(firstHeader)
                 .Add(secondHeader)
                 .Add(new MdParagraph("This is a paragraph of interesting text..."))
-                .Add(newFangledParagraph)
                 .Add(new MdHeader("The third header", 2))
-                .Add(newFangledParagraph)
                 .Add(paragraphWithLink)
                 .Add(new MdHorizontalLine())
                 .Add(image)
-                .Add(differentText)
+                .Add(paragraph)
                 .Add(codeBlock)
                 .Add(table)
                 .Add(quote)
                 .Add(bulletList)
                 .Add(numberedList)
+                .Add(todoList)
                 .Save();
             
             var savedDocument = mockFileSystem.GetFile(outputFilePath);

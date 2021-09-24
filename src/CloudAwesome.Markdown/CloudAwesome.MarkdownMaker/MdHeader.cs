@@ -42,7 +42,6 @@ namespace CloudAwesome.MarkdownMaker
                 throw new MdInputValidationException(result.ToString());
             }
         }
-
         
     }
 }
