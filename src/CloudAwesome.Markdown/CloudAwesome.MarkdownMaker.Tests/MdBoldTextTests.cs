@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace CloudAwesome.MarkdownMaker.Tests
 {
     [TestFixture]
-    public class MdBoldTextTests
+    public class  MdBoldTextTests
     {
         [Test]
         [TestCase("This is bold text", "**This is bold text** ")]
@@ -29,7 +29,17 @@ namespace CloudAwesome.MarkdownMaker.Tests
 
             function.Should().Throw<MdInputValidationException>();
         }
-        
-        // TODO - text can be changed after construction
+
+        [Test]
+        public void Input_String_Can_Be_Changed_After_Initiation()
+        {
+            var text = new MdBoldText("This is the original text");
+            text.Text = "This is updated text";
+
+            var actualResult = text.Markdown;
+
+            actualResult.Should().Be("**This is updated text** ");
+
+        }
     }
 }

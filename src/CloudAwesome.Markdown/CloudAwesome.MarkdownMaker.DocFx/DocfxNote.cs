@@ -1,68 +1,72 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CloudAwesome.MarkdownMaker.DocFx.Validators;
 using CloudAwesome.MarkdownMaker.Exceptions;
-using CloudAwesome.MarkdownMaker.Validators;
 
-namespace CloudAwesome.MarkdownMaker
+namespace CloudAwesome.MarkdownMaker.DocFx
 {
-    public class MdList: IDocumentPart
+    public class DocfxNote: IDocumentPart
     {
         public List<MdPlainText> Items { get; set; }
-        public MdListType? ListType { get; set; }
 
         public string Markdown
         {
             get
             {
                 this.Validate();
-                
-                var stringBuilder = new StringBuilder();
 
-                var listPrefixMarkdown = ListType switch
-                {
-                    MdListType.Ordered => "1.",
-                    MdListType.Unordered => "-",
-                    MdListType.Todo => "- [ ]",
-                    null => throw new ArgumentOutOfRangeException(),
-                    _ => throw new ArgumentOutOfRangeException()
-                };
-                
+                var stringBuilder = new StringBuilder();
+                var noteClassMarkdown = $"> [!{NoteType.Value}] {Environment.NewLine}";
+                stringBuilder.Append(noteClassMarkdown);
+
                 foreach (var item in Items)
                 {
-                    stringBuilder.Append($"{listPrefixMarkdown} {item.Markdown}{Environment.NewLine}");
+                    stringBuilder.Append($"> {item.Markdown}{Environment.NewLine}");
                 }
+
+                stringBuilder.Append(Environment.NewLine);
 
                 return stringBuilder.ToString();
             }
         }
 
-        public MdList(MdListType listType)
-        {
-            Items = new List<MdPlainText>();
-            ListType = listType;
-        }
+        public DocfxNoteType? NoteType { get; set; }
 
-        public MdList()
+        public DocfxNote()
         {
             Items = new List<MdPlainText>();
         }
+        
+        public DocfxNote(DocfxNoteType docfxNoteType)
+        {
+            Items = new List<MdPlainText>();
+            NoteType = docfxNoteType;
+        }
+        
+        public DocfxNote(DocfxNoteType docfxNoteType, string text)
+        {
+            Items = new List<MdPlainText>();
+            NoteType = docfxNoteType;
+            
+            Items.Add(new MdPlainText(text));
+        }
 
-        public MdList AddItem(MdPlainText item)
+        public DocfxNote AddItem(MdPlainText item)
         {
             Items.Add(item);
             return this;
         }
-        
-        public MdList AddItem(string item)
+
+        public DocfxNote AddItem(string item)
         {
             Items.Add(new MdPlainText(item));
             return this;
         }
-        
+
         private void Validate()
         {
-            var validator = new MdListValidator();
+            var validator = new DocfxNoteValidator();
             var result = validator.Validate(this);
 
             if (!result.IsValid)
