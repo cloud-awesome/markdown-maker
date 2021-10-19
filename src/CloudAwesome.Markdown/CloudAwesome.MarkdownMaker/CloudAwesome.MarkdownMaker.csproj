@@ -50,6 +50,7 @@
         <Compile Include="Exceptions\MdInputValidationException.cs" />
         <Compile Include="IDocumentPart.cs" />
         <Compile Include="MdCodeBlock.cs" />
+        <Compile Include="MdComment.cs" />
         <Compile Include="MdDocument.cs" />
         <Compile Include="MdBoldText.cs" />
         <Compile Include="MdHeader.cs" />

@@ -68,6 +68,7 @@
     <ItemGroup>
         <Compile Include="MdBoldTextTests.cs" />
         <Compile Include="MdCodeBlockTests.cs" />
+        <Compile Include="MdCommentTests.cs" />
         <Compile Include="MdDocumentTests.cs" />
         <Compile Include="MdHeaderTests.cs" />
         <Compile Include="MdHorizontalLineTests.cs" />
