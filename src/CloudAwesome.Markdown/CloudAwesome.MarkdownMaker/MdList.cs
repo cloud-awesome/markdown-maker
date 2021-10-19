@@ -6,10 +6,12 @@ using CloudAwesome.MarkdownMaker.Validators;
 
 namespace CloudAwesome.MarkdownMaker
 {
-    public class MdList: IDocumentPart
+    public class MdList: IDocumentPart, IListPart
     {
-        public List<MdPlainText> Items { get; set; }
+        public List<IListPart> Items { get; set; }
         public MdListType? ListType { get; set; }
+
+        public int Level = 0;
 
         public string Markdown
         {
@@ -19,18 +21,29 @@ namespace CloudAwesome.MarkdownMaker
                 
                 var stringBuilder = new StringBuilder();
 
+                var indent = new string(' ', Level * 4);
+
                 var listPrefixMarkdown = ListType switch
                 {
-                    MdListType.Ordered => "1.",
-                    MdListType.Unordered => "-",
-                    MdListType.Todo => "- [ ]",
-                    null => throw new ArgumentOutOfRangeException(),
+                    MdListType.Ordered => $"{indent}1.",
+                    MdListType.Unordered => $"{indent}-",
+                    MdListType.Todo => $"{indent}- [ ]",
                     _ => throw new ArgumentOutOfRangeException()
                 };
                 
                 foreach (var item in Items)
                 {
-                    stringBuilder.Append($"{listPrefixMarkdown} {item.Markdown}{Environment.NewLine}");
+                    if (item.GetType() == typeof(MdPlainText))
+                    {
+                        stringBuilder.Append($"{listPrefixMarkdown} {item.Markdown}{Environment.NewLine}");
+                    }
+                    else
+                    {
+                        var childList = (MdList) item;
+                        childList.Level = Level + 1;
+                        
+                        stringBuilder.Append(childList.Markdown);
+                    }
                 }
 
                 return stringBuilder.ToString();
@@ -39,13 +52,13 @@ namespace CloudAwesome.MarkdownMaker
 
         public MdList(MdListType listType)
         {
-            Items = new List<MdPlainText>();
+            Items = new List<IListPart>();
             ListType = listType;
         }
 
         public MdList()
         {
-            Items = new List<MdPlainText>();
+            Items = new List<IListPart>();
         }
 
         public MdList AddItem(MdPlainText item)
@@ -57,6 +70,12 @@ namespace CloudAwesome.MarkdownMaker
         public MdList AddItem(string item)
         {
             Items.Add(new MdPlainText(item));
+            return this;
+        }
+
+        public MdList AddChildList(MdList childList)
+        {
+            Items.Add(childList);
             return this;
         }
         
