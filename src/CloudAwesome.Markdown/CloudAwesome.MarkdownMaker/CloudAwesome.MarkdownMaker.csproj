@@ -54,6 +54,7 @@
         <Compile Include="MdComment.cs" />
         <Compile Include="MdDocument.cs" />
         <Compile Include="MdBoldText.cs" />
+        <Compile Include="MdDocumentSet.cs" />
         <Compile Include="MdHeader.cs" />
         <Compile Include="MdHorizontalLine.cs" />
         <Compile Include="MdImage.cs" />
@@ -70,6 +71,8 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Validators\MdBoldTextValidator.cs" />
         <Compile Include="Validators\MdCodeBlockValidator.cs" />
+        <Compile Include="Validators\MdDocumentInSetValidator.cs" />
+        <Compile Include="Validators\MdDocumentSetValidator.cs" />
         <Compile Include="Validators\MdHeaderValidator.cs" />
         <Compile Include="Validators\MdImageValidator.cs" />
         <Compile Include="Validators\MdItalicTextValidator.cs" />

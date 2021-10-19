@@ -6,17 +6,22 @@ namespace CloudAwesome.MarkdownMaker
 {
     public class MdDocument
     {
-        public string FilePath { get; set; }
+        /// <summary>
+        /// File name or path for the output document.
+        /// If this is a single MdDocument then it can be a fully qualified path.
+        /// If this MdDocument is part of a MdDocumentSet then it should just be the filename 
+        /// </summary>
+        public string FileName { get; set; }
 
-        public List<IDocumentPart> DocumentParts { get; set; }
+        public List<IDocumentPart> DocumentParts { get; }
 
         private readonly IFileSystem _fileSystem;
 
-        public MdDocument(string filePath) : this(filePath, new FileSystem()) { }
+        public MdDocument(string fileName) : this(fileName, new FileSystem()) { }
 
-        public MdDocument(string filePath, IFileSystem fileSystem)
+        public MdDocument(string fileName, IFileSystem fileSystem)
         {
-            FilePath = filePath;
+            FileName = fileName;
             _fileSystem = fileSystem;
 
             DocumentParts = new List<IDocumentPart>();
@@ -30,11 +35,11 @@ namespace CloudAwesome.MarkdownMaker
         
         public MdDocument Save()
         {
-            _fileSystem.File.Delete(FilePath);
+            _fileSystem.File.Delete(FileName);
             
             foreach (var documentPart in DocumentParts)
             {
-                _fileSystem.File.AppendAllText(FilePath, documentPart.Markdown + Environment.NewLine);
+                _fileSystem.File.AppendAllText(FileName, documentPart.Markdown + Environment.NewLine);
             }
 
             return this;

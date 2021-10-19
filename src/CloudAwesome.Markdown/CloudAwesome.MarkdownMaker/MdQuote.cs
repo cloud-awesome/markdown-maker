@@ -8,7 +8,7 @@ namespace CloudAwesome.MarkdownMaker
 {
     public class MdQuote: IDocumentPart
     {
-        public List<MdPlainText> DocumentParts;
+        public readonly List<MdPlainText> DocumentParts;
 
         public string Markdown
         {
