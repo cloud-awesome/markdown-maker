@@ -78,6 +78,7 @@
         <Compile Include="MdParagraphTests.cs" />
         <Compile Include="MdPlainTextTests.cs" />
         <Compile Include="MdQuoteTests.cs" />
+        <Compile Include="MdStrikethroughTextTests.cs" />
         <Compile Include="MdTableRowTests.cs" />
         <Compile Include="MdTableTests.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

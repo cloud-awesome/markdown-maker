@@ -62,6 +62,7 @@
         <Compile Include="MdParagraph.cs" />
         <Compile Include="MdPlainText.cs" />
         <Compile Include="MdQuote.cs" />
+        <Compile Include="MdStrikethroughText.cs" />
         <Compile Include="MdTable.cs" />
         <Compile Include="MdTableRow.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,6 +76,7 @@
         <Compile Include="Validators\MdParagraphValidator.cs" />
         <Compile Include="Validators\MdPlainTextValidator.cs" />
         <Compile Include="Validators\MdQuoteValidator.cs" />
+        <Compile Include="Validators\MdStrikethroughTextValidator.cs" />
         <Compile Include="Validators\MdTableRowValidator.cs" />
         <Compile Include="Validators\MdTableValidator.cs" />
     </ItemGroup>

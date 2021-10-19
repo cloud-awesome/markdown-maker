@@ -6,7 +6,9 @@ namespace CloudAwesome.MarkdownMaker.Validators
     {
         public MdBoldTextValidator()
         {
-            RuleFor(boldText => boldText.Text).NotEmpty();
+            RuleFor(boldText => boldText.Text).NotEmpty()
+                .WithMessage("The text entered for the MdBoldText element is empty. " +
+                             "Bold text cannot be null or empty");
         }
     }
 }
