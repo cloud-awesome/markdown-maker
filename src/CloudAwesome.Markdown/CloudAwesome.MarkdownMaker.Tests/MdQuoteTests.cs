@@ -54,60 +54,60 @@ namespace CloudAwesome.MarkdownMaker.Tests
                                      $"{Environment.NewLine}");
         }
 
-        [Test]
-        public void Quote_Constructed_With_Lines_List_Returns_Valid_Markdown()
-        {
-            var quote = new MdQuote()
-            {
-                DocumentParts =
-                {
-                    new MdPlainText(InputText),
-                    new MdPlainText(InputText)
-                }
-            };
-            
-            var actualResult = quote.Markdown;
+        // [Test]
+        // public void Quote_Constructed_With_Lines_List_Returns_Valid_Markdown()
+        // {
+        //     var quote = new MdQuote()
+        //     {
+        //         DocumentParts =
+        //         {
+        //             new MdPlainText(InputText),
+        //             new MdPlainText(InputText)
+        //         }
+        //     };
+        //     
+        //     var actualResult = quote.Markdown;
+        //
+        //     actualResult.Should().Be($"> {InputText} " +
+        //                              $"{Environment.NewLine}" +
+        //                              $"> " +
+        //                              $"{Environment.NewLine}" +
+        //                              $"> {InputText} " +
+        //                              $"{Environment.NewLine}" +
+        //                              $"> " +
+        //                              $"{Environment.NewLine}" +
+        //                              $"{Environment.NewLine}");
+        // }
 
-            actualResult.Should().Be($"> {InputText} " +
-                                     $"{Environment.NewLine}" +
-                                     $"> " +
-                                     $"{Environment.NewLine}" +
-                                     $"> {InputText} " +
-                                     $"{Environment.NewLine}" +
-                                     $"> " +
-                                     $"{Environment.NewLine}" +
-                                     $"{Environment.NewLine}");
-        }
-
-        [Test]
-        public void Quote_Constructed_With_Lines_List_Can_Add_More_Lines()
-        {
-            var quote = new MdQuote()
-                {
-                    DocumentParts =
-                    {
-                        new MdPlainText(InputText),
-                        new MdPlainText(InputText)
-                    }
-                }
-                .AddLine(new MdPlainText(InputText));
-
-            var actualResult = quote.Markdown;
-
-            actualResult.Should().Be($"> {InputText} " +
-                                     $"{Environment.NewLine}" +
-                                     $"> " +
-                                     $"{Environment.NewLine}" +
-                                     $"> {InputText} " +
-                                     $"{Environment.NewLine}" +
-                                     $"> " +
-                                     $"{Environment.NewLine}" +
-                                     $"> {InputText} " +
-                                     $"{Environment.NewLine}" +
-                                     $"> " +
-                                     $"{Environment.NewLine}" +
-                                     $"{Environment.NewLine}");
-        }
+        // [Test]
+        // public void Quote_Constructed_With_Lines_List_Can_Add_More_Lines()
+        // {
+        //     var quote = new MdQuote()
+        //         {
+        //             DocumentParts =
+        //             {
+        //                 new MdPlainText(InputText),
+        //                 new MdPlainText(InputText)
+        //             }
+        //         }
+        //         .AddLine(new MdPlainText(InputText));
+        //
+        //     var actualResult = quote.Markdown;
+        //
+        //     actualResult.Should().Be($"> {InputText} " +
+        //                              $"{Environment.NewLine}" +
+        //                              $"> " +
+        //                              $"{Environment.NewLine}" +
+        //                              $"> {InputText} " +
+        //                              $"{Environment.NewLine}" +
+        //                              $"> " +
+        //                              $"{Environment.NewLine}" +
+        //                              $"> {InputText} " +
+        //                              $"{Environment.NewLine}" +
+        //                              $"> " +
+        //                              $"{Environment.NewLine}" +
+        //                              $"{Environment.NewLine}");
+        // }
 
         [Test]
         public void Empty_Quote_Returns_Validation_Error()
