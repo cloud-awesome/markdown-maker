@@ -96,6 +96,30 @@ namespace CloudAwesome.MarkdownMaker.Tests
 
             sut.Should().Throw<MdInputValidationException>();
         }
+
+        [Test]
+        public void Column_headers_Can_Accept_Various_Typographies()
+        {
+            var expectedResult = 
+                $"| **First header** | Second header | Third header | _Alternate header_ | {Environment.NewLine}" +
+                $"|---|---|---|---|{Environment.NewLine}" +
+                $"| Datum 1 | Datum 2 | Datum 3 | Datum 4 | {Environment.NewLine}" +
+                $"{Environment.NewLine}";
+            
+            var table = new MdTable()
+                .AddColumn(new MdBoldText("First header"))
+                .AddColumn(new MdPlainText("Second header"))
+                .AddColumn(new MdPlainText("Third header"))
+                .AddColumn(new MdItalicText("Alternate header"))
+                .AddRow(new MdTableRow()
+                    .AddCell("Datum 1")
+                    .AddCell("Datum 2")
+                    .AddCell("Datum 3")
+                    .AddCell("Datum 4")
+                );
+            
+            table.Markdown.Should().Be(expectedResult);
+        }
         
     }
 }

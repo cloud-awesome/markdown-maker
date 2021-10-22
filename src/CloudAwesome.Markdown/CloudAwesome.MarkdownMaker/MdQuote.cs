@@ -8,7 +8,7 @@ namespace CloudAwesome.MarkdownMaker
 {
     public class MdQuote: IDocumentPart
     {
-        internal readonly List<MdPlainText> DocumentParts;
+        internal readonly List<ISingleLinePart> DocumentParts;
 
         public string Markdown
         {
@@ -33,16 +33,16 @@ namespace CloudAwesome.MarkdownMaker
 
         public MdQuote()
         {
-            DocumentParts = new List<MdPlainText>();
+            DocumentParts = new List<ISingleLinePart>();
         }
 
         public MdQuote(string inputText)
         {
-            DocumentParts = new List<MdPlainText>();
+            DocumentParts = new List<ISingleLinePart>();
             this.AddLine(new MdPlainText(inputText));
         }
 
-        public MdQuote AddLine(MdPlainText line)
+        public MdQuote AddLine(ISingleLinePart line)
         {
             DocumentParts.Add(line);
             return this;

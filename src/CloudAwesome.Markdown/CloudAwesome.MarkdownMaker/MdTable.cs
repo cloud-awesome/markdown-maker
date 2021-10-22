@@ -10,7 +10,7 @@ namespace CloudAwesome.MarkdownMaker
     {
         public List<MdTableRow> Rows { get; set; }
         
-        public List<MdPlainText> ColumnsHeaders { get; set; }
+        public List<ISingleLinePart> ColumnsHeaders { get; set; }
 
         public string Markdown
         {
@@ -51,11 +51,11 @@ namespace CloudAwesome.MarkdownMaker
 
         public MdTable()
         {
-            ColumnsHeaders = new List<MdPlainText>();
+            ColumnsHeaders = new List<ISingleLinePart>();
             Rows = new List<MdTableRow>();
         }
         
-        public MdTable AddColumn(MdPlainText columnHeader)
+        public MdTable AddColumn(ISingleLinePart columnHeader)
         {
             ColumnsHeaders.Add(columnHeader);
             return this;

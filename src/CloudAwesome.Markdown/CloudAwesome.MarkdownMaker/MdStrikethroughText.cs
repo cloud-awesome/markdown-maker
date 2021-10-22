@@ -3,7 +3,7 @@ using CloudAwesome.MarkdownMaker.Validators;
 
 namespace CloudAwesome.MarkdownMaker
 {
-    public class MdStrikethroughText: IDocumentPart
+    public class MdStrikethroughText: IDocumentPart, ISingleLinePart
     {
         public string Text { get; set; }
 

@@ -47,5 +47,21 @@ namespace CloudAwesome.MarkdownMaker.Tests
 
             sut.Should().Throw<MdInputValidationException>();
         }
+
+        [Test]
+        public void Table_Row_Can_Accept_Multiple_Typographies()
+        {
+            var expectedOutput = 
+                "| **First cell** | Second cell | _Third cell_ | [Click this](https://google.com) | ~~This is a mistake~~ | ";
+
+            var row = new MdTableRow()
+                .AddCell(new MdBoldText("First cell"))
+                .AddCell("Second cell")
+                .AddCell(new MdItalicText("Third cell"))
+                .AddCell(new MdLink("Click this", "https://google.com"))
+                .AddCell(new MdStrikethroughText("This is a mistake"));
+
+            row.Markdown.Should().Be(expectedOutput);
+        }
     }
 }

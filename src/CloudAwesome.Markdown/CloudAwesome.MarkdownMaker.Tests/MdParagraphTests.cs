@@ -39,25 +39,6 @@ namespace CloudAwesome.MarkdownMaker.Tests
             actualResult.Should().Be($"{InputText} {Environment.NewLine}");
         }
 
-        // [Test]
-        // public void Paragraph_Constructed_With_Parts_Returns_Valid_Markdown()
-        // {
-        //     var paragraph = new MdParagraph
-        //     {
-        //         DocumentParts =
-        //         {
-        //             new MdPlainText("Line 1"),
-        //             new MdPlainText("Line 2")
-        //         }
-        //     };
-        //
-        //     var actualResult = paragraph.Markdown;
-        //
-        //     actualResult.Should().Be($"Line 1 " +
-        //                              $"Line 2 " +
-        //                              $"{Environment.NewLine}");
-        // }
-
         [Test]
         public void Empty_Paragraph_Returns_Validation_Error()
         {
@@ -65,6 +46,18 @@ namespace CloudAwesome.MarkdownMaker.Tests
             Func<string> sut = () => paragraph.Markdown;
 
             sut.Should().Throw<MdInputValidationException>();
+        }
+
+        [Test]
+        public void Paragraph_Can_Accept_Text_Of_Various_Typographies()
+        {
+            var expectedOutput = $"This is some **important** text, which _should_ work. {Environment.NewLine}";
+
+            var paragraph = new MdParagraph()
+                .Add("This is some").Add(new MdBoldText("important"))
+                .Add("text, which").Add(new MdItalicText("should")).Add("work.");
+
+            paragraph.Markdown.Should().Be(expectedOutput);
         }
         
     }

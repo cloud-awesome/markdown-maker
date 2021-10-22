@@ -3,7 +3,7 @@ using CloudAwesome.MarkdownMaker.Validators;
 
 namespace CloudAwesome.MarkdownMaker
 {
-    public class MdBoldText: IDocumentPart
+    public class MdBoldText: IDocumentPart, ISingleLinePart
     {
         public string Text { get; set; }
 

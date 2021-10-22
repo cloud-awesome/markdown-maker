@@ -7,7 +7,7 @@ namespace CloudAwesome.MarkdownMaker
 {
     public class MdTableRow
     {
-        public List<MdPlainText> Cells { get; set; }
+        public List<ISingleLinePart> Cells { get; }
 
         public string Markdown
         {
@@ -29,20 +29,18 @@ namespace CloudAwesome.MarkdownMaker
 
         public MdTableRow()
         {
-            Cells = new List<MdPlainText>();
+            Cells = new List<ISingleLinePart>();
         }
         
-        public MdTableRow AddCell(MdPlainText cell)
+        public MdTableRow AddCell(ISingleLinePart cell)
         {
             Cells.Add(cell);
-
             return this;
         }
         
         public MdTableRow AddCell(string cellText)
         {
             Cells.Add(new MdPlainText(cellText));
-
             return this;
         }
         
