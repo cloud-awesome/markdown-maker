@@ -1,7 +1,6 @@
 ﻿using System;
 using CloudAwesome.MarkdownMaker.Exceptions;
 using FluentAssertions;
-using NUnit;
 using NUnit.Framework;
 
 namespace CloudAwesome.MarkdownMaker.Tests
@@ -23,7 +22,6 @@ namespace CloudAwesome.MarkdownMaker.Tests
                                      $"{Environment.NewLine}" +
                                      $"{Environment.NewLine}");
         }
-        
         
         [Test]
         public void Quote_With_Fluent_Content_Returns_Valid_Markdown()

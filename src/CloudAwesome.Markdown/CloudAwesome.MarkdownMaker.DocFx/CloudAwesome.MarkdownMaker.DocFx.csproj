@@ -50,6 +50,8 @@
         <Compile Include="DocfxNote.cs" />
         <Compile Include="DocfxNoteType.cs" />
         <Compile Include="DocfxSectionDefinition.cs" />
+        <Compile Include="DocfxTab.cs" />
+        <Compile Include="DocfxTabbedContent.cs" />
         <Compile Include="DocfxYamlHeader.cs" />
         <Compile Include="IYamlHeader.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
