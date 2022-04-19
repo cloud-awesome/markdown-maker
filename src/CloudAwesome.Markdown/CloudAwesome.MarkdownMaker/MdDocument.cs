@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
+using System.Text;
+using CloudAwesome.MarkdownMaker.Converters;
 
 namespace CloudAwesome.MarkdownMaker
 {
@@ -17,12 +19,25 @@ namespace CloudAwesome.MarkdownMaker
 
         private readonly IFileSystem _fileSystem;
 
-        public MdDocument(string fileName) : this(fileName, new FileSystem()) { }
+        public MdDocument(string fileName) 
+            : this(fileName, new FileSystem()) { }
+        
+        public MdDocument(string fileName, IDocumentMe pocoClass, IFileSystem fileSystem = null)
+            : this(fileName, new List<IDocumentMe>() { pocoClass }, fileSystem) { }
 
-        public MdDocument(string fileName, IFileSystem fileSystem)
+        public MdDocument(string fileName, IEnumerable<IDocumentMe> pocoClasses, 
+            IFileSystem fileSystem = null)
         {
             FileName = fileName;
-            _fileSystem = fileSystem;
+            _fileSystem = fileSystem ?? new FileSystem();
+
+            DocumentParts = pocoClasses.Convert();
+        }
+
+        public MdDocument(string fileName, IFileSystem fileSystem = null)
+        {
+            FileName = fileName;
+            _fileSystem = fileSystem ?? new FileSystem();
 
             DocumentParts = new List<IDocumentPart>();
         }
@@ -32,7 +47,7 @@ namespace CloudAwesome.MarkdownMaker
             DocumentParts.Add(documentPart);
             return this;
         }
-        
+
         public MdDocument Save()
         {
             _fileSystem.File.Delete(FileName);
@@ -43,6 +58,18 @@ namespace CloudAwesome.MarkdownMaker
             }
 
             return this;
+        }
+        
+        public override string ToString()
+        {
+            var stringBuilder = new StringBuilder();
+
+            foreach (var documentPart in DocumentParts)
+            {
+                stringBuilder.Append(documentPart.Markdown + Environment.NewLine);
+            }
+
+            return stringBuilder.ToString();
         }
     }
 }
