@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO.Abstractions.TestingHelpers;
 using CloudAwesome.MarkdownMaker.Exceptions;
 using FluentAssertions;
@@ -95,6 +96,58 @@ namespace CloudAwesome.MarkdownMaker.Tests
 
             mockFileSystem.FileExists($"C:/OutputFolder/DataModel/Contact.md").Should().Be(true);
         }
-        
+
+        [Test]
+        public void Example_Generate_Set_Through_A_Loop()
+        {
+            var folderPath = "C:/OutputFolder/DataModel/";
+            
+            var mockFileSystem = new MockFileSystem();
+            mockFileSystem.Directory.CreateDirectory(folderPath);
+            
+            var sampleDataList = _sampleData;
+
+            var documentSet = new MdDocumentSet(folderPath);
+            
+            foreach (var sampleData in sampleDataList)
+            {
+                documentSet.AddDocument(
+                    new MdDocument($"{sampleData.Name}.md", mockFileSystem)
+                        .Add(new MdHeader(sampleData.Name, 1))
+                        .Add(new MdParagraph(sampleData.Description))
+                    );
+            }
+            
+            documentSet.Generate();
+
+            mockFileSystem.FileExists($"{folderPath}Contact.md").Should().Be(true);
+        }
+
+        private readonly List<MdSampleDataModel> _sampleData =
+        [
+            new MdSampleDataModel
+            {
+                Name = "Contact",
+                Description = "This is some sample data about contacts"
+            },
+
+            new MdSampleDataModel
+            {
+                Name = "Account",
+                Description = "This is some sample data about accounts"
+            },
+
+            new MdSampleDataModel
+            {
+                Name = "Opportunity",
+                Description = "This is some sample data about opportunities"
+            }
+        ];
+    }
+
+    class MdSampleDataModel()
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

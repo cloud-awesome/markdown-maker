@@ -23,7 +23,50 @@ namespace CloudAwesome.MarkdownMaker.Tests
             var savedDocument = mockFileSystem.GetFile(outputFilePath);
 
             savedDocument.TextContents.Should().Be($"# The header{Environment.NewLine}{Environment.NewLine}");
+        }
+        
+        [Test]
+        public void File_Path_Can_Be_Injected_During_Save()
+        {
+            var outputFilePath = "C:\\output1.md";
 
+            var mockFileSystem = new MockFileSystem();
+            var document = new MdDocument("", mockFileSystem);
+
+            document
+                .Add(new MdHeader("The header", 1))
+                .Save(outputFilePath);
+
+            var savedDocument = mockFileSystem.GetFile(outputFilePath);
+
+            savedDocument.TextContents.Should().Be($"# The header{Environment.NewLine}{Environment.NewLine}");
+        }
+
+        [Test]
+        public void Save_File_Throws_Exception_If_No_FileName_Provided()
+        {
+            var document = new MdDocument();
+
+            var testFunc = 
+                () =>
+                    document
+                    .Add(new MdHeader("The header", 1))
+                    .Save();
+
+            testFunc.Should().Throw<InvalidOperationException>();
+        }
+
+        [Test]
+        public void Valid_Inputs_Generate_Valid_Markdown_String()
+        {
+            var document = new MdDocument();
+
+            var output =
+                document
+                .Add(new MdHeader("The header", 1))
+                .ToString();
+            
+            output.Should().Be($"# The header{Environment.NewLine}{Environment.NewLine}");
         }
         
         [Test]

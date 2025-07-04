@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
+using System.Text;
 
 namespace CloudAwesome.MarkdownMaker
 {
@@ -16,6 +17,8 @@ namespace CloudAwesome.MarkdownMaker
         public List<IDocumentPart> DocumentParts { get; }
 
         private readonly IFileSystem _fileSystem;
+
+        public MdDocument() : this(String.Empty, new FileSystem()) { }
 
         public MdDocument(string fileName) : this(fileName, new FileSystem()) { }
 
@@ -35,14 +38,40 @@ namespace CloudAwesome.MarkdownMaker
         
         public MdDocument Save()
         {
-            _fileSystem.File.Delete(FileName);
-            
-            foreach (var documentPart in DocumentParts)
+            if (string.IsNullOrEmpty(FileName))
             {
-                _fileSystem.File.AppendAllText(FileName, documentPart.Markdown + Environment.NewLine);
+                throw new InvalidOperationException("Filename cannot be null if saving document to a file");
             }
+            
+            _fileSystem.File.Delete(FileName);
+            _fileSystem.File.AppendAllText(FileName, GenerateDocumentContents());
+            return this;
+        }
+
+        public MdDocument Save(string fileName)
+        {
+            FileName = fileName;
+
+            this.Save();
 
             return this;
         }
+
+        public override string ToString()
+        {
+            return GenerateDocumentContents();
+        }
+
+        private string GenerateDocumentContents()
+        {
+            var stringBuilder = new StringBuilder();
+            
+            foreach (var documentPart in DocumentParts)
+            {
+                stringBuilder.Append(documentPart.Markdown + Environment.NewLine);
+            }
+
+            return stringBuilder.ToString();
+        } 
     }
 }
