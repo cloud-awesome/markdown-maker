@@ -120,6 +120,57 @@ namespace CloudAwesome.MarkdownMaker.Tests
             
             table.Markdown.Should().Be(expectedResult);
         }
+
+        [Test]
+        public void Headers_can_be_added_in_a_single_call()
+        {
+            var table = new MdTable()
+                .AddColumns("First column", "Second column", "Third column", "Fourth column")
+                .AddRow(new MdTableRow()
+                    .AddCell("Datum 1")
+                    .AddCell("Datum 2")
+                    .AddCell("Datum 3")
+                    .AddCell("Datum 4")
+                );
+
+
+            table.Markdown.Should().Be($"| First column | Second column | Third column | Fourth column | {Environment.NewLine}" +
+                                       $"|---|---|---|---|{Environment.NewLine}" +
+                                       $"| Datum 1 | Datum 2 | Datum 3 | Datum 4 | {Environment.NewLine}" +
+                                       $"{Environment.NewLine}");
+        }
+        
+        [Test]
+        public void Rows_can_be_added_in_a_single_call()
+        {
+            var table = new MdTable()
+                .AddColumn("First column")
+                .AddColumn("Second column")
+                .AddColumn("Third column")
+                .AddColumn("Fourth column")
+                .AddRowCells("Datum 1", "Datum 2", "Datum 3", "Datum 4");
+            
+            table.Markdown.Should().Be($"| First column | Second column | Third column | Fourth column | {Environment.NewLine}" +
+                                       $"|---|---|---|---|{Environment.NewLine}" +
+                                       $"| Datum 1 | Datum 2 | Datum 3 | Datum 4 | {Environment.NewLine}" +
+                                       $"{Environment.NewLine}");
+        }
+        
+        [Test]
+        public void Headers_and_rows_of_different_formats_can_be_added_in_a_single_call()
+        {
+            var table = new MdTable()
+                .AddColumns(new MdBoldText("First column"), new MdPlainText("Second column"),
+                    new MdItalicText("Third column"), new MdBoldText("Fourth column"))
+                .AddRowCells(new MdBoldText("Datum 1"), new MdPlainText("Datum 2"), 
+                    new MdItalicText("Datum 3"), new MdBoldText("Datum 4"));
+            
+            table.Markdown.Should().Be($"| **First column** | Second column | _Third column_ | **Fourth column** | {Environment.NewLine}" +
+                                       $"|---|---|---|---|{Environment.NewLine}" +
+                                       $"| **Datum 1** | Datum 2 | _Datum 3_ | **Datum 4** | {Environment.NewLine}" +
+                                       $"{Environment.NewLine}");
+        }
+
         
     }
 }

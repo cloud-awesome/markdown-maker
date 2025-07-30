@@ -67,9 +67,57 @@ namespace CloudAwesome.MarkdownMaker
             return this;
         }
 
+        public MdTable AddColumns(params string[] columnHeaders)
+        {
+            foreach (var header in columnHeaders)
+            {
+                ColumnsHeaders.Add(new MdPlainText(header));
+            }
+
+            return this;
+        }
+        
+        public MdTable AddColumns(params ISingleLinePart[] columnHeaders)
+        {
+            foreach (var header in columnHeaders)
+            {
+                ColumnsHeaders.Add(header);
+            }
+
+            return this;
+        }
+
         public MdTable AddRow(MdTableRow tableRow)
         {
             Rows.Add(tableRow);
+            return this;
+        }
+
+        public MdTable AddRowCells(params string[] rowCells)
+        {
+            var tableRow = new MdTableRow();
+            
+            foreach (var rowCell in rowCells)
+            {
+                tableRow.AddCell(rowCell);
+            }
+            
+            Rows.Add(tableRow);
+            
+            return this;
+        }
+        
+        public MdTable AddRowCells(params ISingleLinePart[] rowCells)
+        {
+            var tableRow = new MdTableRow();
+            
+            foreach (var rowCell in rowCells)
+            {
+                tableRow.AddCell(rowCell);
+            }
+            
+            Rows.Add(tableRow);
+            
             return this;
         }
         
