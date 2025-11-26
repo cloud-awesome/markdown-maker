@@ -45,5 +45,21 @@ namespace CloudAwesome.MarkdownMaker.Tests
 
             actualResult.Should().Be($"{expectedResult}{Environment.NewLine}");
         }
+
+        [Test]
+        [TestCase(HeaderLevel.H1, "# This is a title")]
+        [TestCase(HeaderLevel.H2, "## This is a title")]
+        [TestCase(HeaderLevel.H3, "### This is a title")]
+        [TestCase(HeaderLevel.H4, "#### This is a title")]
+        [TestCase(HeaderLevel.H5, "##### This is a title")]
+        [TestCase(HeaderLevel.H6, "###### This is a title")]
+        public void Alternate_Enum_Header_Returns_Valid_Markdown(HeaderLevel level, string expectedResult)
+        {
+            var header = new MdHeader("This is a title", level);
+            var actualResult = header.Markdown;
+            
+            actualResult.Should().Be($"{expectedResult}{Environment.NewLine}");
+
+        }
     }
 }

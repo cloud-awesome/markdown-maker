@@ -5,6 +5,16 @@ using CloudAwesome.MarkdownMaker.Validators;
 
 namespace CloudAwesome.MarkdownMaker
 {
+    public enum HeaderLevel
+    {
+        H1 = 1,
+        H2,
+        H3,
+        H4,
+        H5,
+        H6
+    }
+    
     public class MdHeader: IDocumentPart
     {
         public string Text { get; set; }
@@ -30,6 +40,12 @@ namespace CloudAwesome.MarkdownMaker
         {
             Text = text;
             Level = level;
+        }
+        
+        public MdHeader(string text, HeaderLevel level)
+        {
+            Text = text;
+            Level = (int) level;
         }
 
         private void Validate()
