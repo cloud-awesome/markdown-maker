@@ -1,0 +1,43 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'src/**' ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore, build, and test solution
+        shell: pwsh
+        run: |
+          # Find the first solution file (equivalent to **/*.sln)
+          $solution = Get-ChildItem -Path . -Filter *.sln -Recurse | Select-Object -First 1
+
+          if (-not $solution) {
+            Write-Error "No solution (.sln) file found."
+            exit 1
+          }
+
+          Write-Host "Using solution: $($solution.FullName)"
+
+          # Restore NuGet packages (NuGetCommand@2)
+          dotnet restore $solution.FullName
+
+          # Build solution in Release (VSBuild@1)
+          dotnet build $solution.FullName --configuration Release --no-restore
+
+          # Run tests with code coverage (VSTest@2)
+          dotnet test $solution.FullName `
+            --configuration Release `
+            --no-build `
+            --collect "Code Coverage" `
+            --logger "trx;LogFileName=testresults.trx"
+
+            
