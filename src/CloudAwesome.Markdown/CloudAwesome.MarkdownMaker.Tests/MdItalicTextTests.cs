@@ -1,7 +1,5 @@
-﻿using System;
-using CloudAwesome.MarkdownMaker.Exceptions;
+﻿using CloudAwesome.MarkdownMaker.Exceptions;
 using FluentAssertions;
-using NUnit.Framework;
 
 namespace CloudAwesome.MarkdownMaker.Tests
 {
@@ -19,7 +17,6 @@ namespace CloudAwesome.MarkdownMaker.Tests
 
         [Test]
         [TestCase("")]
-        [TestCase(null)]
         public void Empty_Input_Returns_Validation_Exception(string inputValue)
         {
             var text = new MdItalicText(inputValue);

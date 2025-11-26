@@ -1,12 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudAwesome.MarkdownMaker", "CloudAwesome.MarkdownMaker\CloudAwesome.MarkdownMaker.csproj", "{6F0E5186-44FD-4822-BB66-B808690AA515}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudAwesome.MarkdownMaker", "CloudAwesome.MarkdownMaker\CloudAwesome.MarkdownMaker.csproj", "{80CF3E23-7711-4F6E-998E-3E54E7E20491}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudAwesome.MarkdownMaker.Tests", "CloudAwesome.MarkdownMaker.Tests\CloudAwesome.MarkdownMaker.Tests.csproj", "{CECDFFEA-193F-48B0-BF2F-4C8FC42C6F8A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudAwesome.MarkdownMaker.DocFx", "CloudAwesome.MarkdownMaker.DocFx\CloudAwesome.MarkdownMaker.DocFx.csproj", "{F155557C-CAE0-477C-AABE-15F91D8678D7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudAwesome.MarkdownMaker.DocFx.Tests", "CloudAwesome.MarkdownMaker.DocFx.Tests\CloudAwesome.MarkdownMaker.DocFx.Tests.csproj", "{DAF72483-C36B-42F9-B6F7-616F68838854}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudAwesome.MarkdownMaker.Tests", "CloudAwesome.MarkdownMaker.Tests\CloudAwesome.MarkdownMaker.Tests.csproj", "{8DA81958-C162-4864-A179-19379081CC9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,21 +10,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6F0E5186-44FD-4822-BB66-B808690AA515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F0E5186-44FD-4822-BB66-B808690AA515}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F0E5186-44FD-4822-BB66-B808690AA515}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F0E5186-44FD-4822-BB66-B808690AA515}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CECDFFEA-193F-48B0-BF2F-4C8FC42C6F8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CECDFFEA-193F-48B0-BF2F-4C8FC42C6F8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CECDFFEA-193F-48B0-BF2F-4C8FC42C6F8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CECDFFEA-193F-48B0-BF2F-4C8FC42C6F8A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F155557C-CAE0-477C-AABE-15F91D8678D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F155557C-CAE0-477C-AABE-15F91D8678D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F155557C-CAE0-477C-AABE-15F91D8678D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F155557C-CAE0-477C-AABE-15F91D8678D7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DAF72483-C36B-42F9-B6F7-616F68838854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DAF72483-C36B-42F9-B6F7-616F68838854}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DAF72483-C36B-42F9-B6F7-616F68838854}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DAF72483-C36B-42F9-B6F7-616F68838854}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80CF3E23-7711-4F6E-998E-3E54E7E20491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80CF3E23-7711-4F6E-998E-3E54E7E20491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80CF3E23-7711-4F6E-998E-3E54E7E20491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80CF3E23-7711-4F6E-998E-3E54E7E20491}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DA81958-C162-4864-A179-19379081CC9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DA81958-C162-4864-A179-19379081CC9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DA81958-C162-4864-A179-19379081CC9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DA81958-C162-4864-A179-19379081CC9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

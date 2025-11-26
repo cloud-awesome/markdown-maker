@@ -1,6 +1,4 @@
-﻿using System;
-using FluentAssertions;
-using NUnit.Framework;
+﻿using FluentAssertions;
 
 namespace CloudAwesome.MarkdownMaker.Tests
 {

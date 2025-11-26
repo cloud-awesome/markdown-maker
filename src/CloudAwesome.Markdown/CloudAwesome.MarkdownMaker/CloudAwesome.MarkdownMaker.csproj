@@ -1,106 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
     <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{6F0E5186-44FD-4822-BB66-B808690AA515}</ProjectGuid>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>CloudAwesome.MarkdownMaker</RootNamespace>
-        <AssemblyName>CloudAwesome.MarkdownMaker</AssemblyName>
-        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-        <FileAlignment>512</FileAlignment>
-        <LangVersion>latest</LangVersion>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
+
     <ItemGroup>
-        <Reference Include="FluentValidation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0">
-          <HintPath>..\packages\FluentValidation.10.3.3\lib\netstandard2.0\FluentValidation.dll</HintPath>
-          <Private>True</Private>
-        </Reference>
-        <Reference Include="System" />
-        <Reference Include="System.Core" />
-        <Reference Include="System.Data" />
-        <Reference Include="System.IO.Abstractions, Version=13.0.0.0, Culture=neutral, PublicKeyToken=96bf224d23c43e59">
-          <HintPath>..\packages\System.IO.Abstractions.13.2.47\lib\net461\System.IO.Abstractions.dll</HintPath>
-          <Private>True</Private>
-        </Reference>
-        <Reference Include="System.Xml" />
+      <PackageReference Include="FluentValidation" Version="10.3.3" />
+      <PackageReference Include="System.IO.Abstractions" Version="22.1.0" />
     </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Converters\ClassToMarkdownConverter.cs" />
-        <Compile Include="Exceptions\MdInputValidationException.cs" />
-        <Compile Include="IDocumentMe.cs" />
-        <Compile Include="IDocumentPart.cs" />
-        <Compile Include="IListPart.cs" />
-        <Compile Include="ISingleLinePart.cs" />
-        <Compile Include="MdCodeBlock.cs" />
-        <Compile Include="MdComment.cs" />
-        <Compile Include="MdDocument.cs" />
-        <Compile Include="MdBoldText.cs" />
-        <Compile Include="MdDocumentSet.cs" />
-        <Compile Include="MdHeader.cs" />
-        <Compile Include="MdHorizontalLine.cs" />
-        <Compile Include="MdImage.cs" />
-        <Compile Include="MdItalicText.cs" />
-        <Compile Include="MdLink.cs" />
-        <Compile Include="MdList.cs" />
-        <Compile Include="MdListType.cs" />
-        <Compile Include="MdParagraph.cs" />
-        <Compile Include="MdPlainText.cs" />
-        <Compile Include="MdQuote.cs" />
-        <Compile Include="MdStrikethroughText.cs" />
-        <Compile Include="MdTable.cs" />
-        <Compile Include="MdTableRow.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="Validators\MdBoldTextValidator.cs" />
-        <Compile Include="Validators\MdCodeBlockValidator.cs" />
-        <Compile Include="Validators\MdDocumentInSetValidator.cs" />
-        <Compile Include="Validators\MdDocumentSetValidator.cs" />
-        <Compile Include="Validators\MdHeaderValidator.cs" />
-        <Compile Include="Validators\MdImageValidator.cs" />
-        <Compile Include="Validators\MdItalicTextValidator.cs" />
-        <Compile Include="Validators\MdLinkValidator.cs" />
-        <Compile Include="Validators\MdListValidator.cs" />
-        <Compile Include="Validators\MdParagraphValidator.cs" />
-        <Compile Include="Validators\MdPlainTextValidator.cs" />
-        <Compile Include="Validators\MdQuoteValidator.cs" />
-        <Compile Include="Validators\MdStrikethroughTextValidator.cs" />
-        <Compile Include="Validators\MdTableRowValidator.cs" />
-        <Compile Include="Validators\MdTableValidator.cs" />
-    </ItemGroup>
-    <ItemGroup>
-      <None Include="packages.config" />
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="CloudAwesome.MarkdownMaker.nuspec" />
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-         Other similar extension points exist, see Microsoft.Common.targets.
-    <Target Name="BeforeBuild">
-    </Target>
-    <Target Name="AfterBuild">
-    </Target>
-    -->
 
 </Project>
