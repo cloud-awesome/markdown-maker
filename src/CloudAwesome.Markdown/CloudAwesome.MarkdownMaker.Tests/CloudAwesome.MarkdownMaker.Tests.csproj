@@ -66,6 +66,7 @@
         <Reference Include="System.Xml.Linq" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="ClassToMarkdownConverterTests.cs" />
         <Compile Include="MdBoldTextTests.cs" />
         <Compile Include="MdCodeBlockTests.cs" />
         <Compile Include="MdCommentTests.cs" />
