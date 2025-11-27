@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudAwesome.MarkdownMaker"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudAwesome.MarkdownMaker.Tests", "CloudAwesome.MarkdownMaker.Tests\CloudAwesome.MarkdownMaker.Tests.csproj", "{8DA81958-C162-4864-A179-19379081CC9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudAwesome.MarkdownMaker.Docusaurus", "CloudAwesome.MarkdownMaker.Docusaurus\CloudAwesome.MarkdownMaker.Docusaurus.csproj", "{81885A23-4784-4563-A81D-1B3060BAD967}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudAwesome.MarkdownMaker.Docusaurus.Tests", "CloudAwesome.MarkdownMaker.Docusaurus.Tests\CloudAwesome.MarkdownMaker.Docusaurus.Tests.csproj", "{B0237485-4A62-468A-B447-A2F19C77DE63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{8DA81958-C162-4864-A179-19379081CC9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DA81958-C162-4864-A179-19379081CC9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DA81958-C162-4864-A179-19379081CC9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81885A23-4784-4563-A81D-1B3060BAD967}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81885A23-4784-4563-A81D-1B3060BAD967}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81885A23-4784-4563-A81D-1B3060BAD967}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81885A23-4784-4563-A81D-1B3060BAD967}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0237485-4A62-468A-B447-A2F19C77DE63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0237485-4A62-468A-B447-A2F19C77DE63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0237485-4A62-468A-B447-A2F19C77DE63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0237485-4A62-468A-B447-A2F19C77DE63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
