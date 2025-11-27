@@ -9,7 +9,9 @@ public class MdDocusaurusAdmonitionTests
 	public void Note_Admonition_Returns_Valid_Markdown()
 	{
 		var doc = new MdDocument();
-		doc.Add(new MdDocusaurusAdmonition(AdmonitionType.Note, "Here is some content for the note."));
+		doc.Add(new MdDocusaurusAdmonition(
+			AdmonitionType.Note, 
+			"Here is some content for the note."));
 		var result = doc.ToString();
 		
 		result.Should().Be(
@@ -48,9 +50,9 @@ public class MdDocusaurusAdmonitionTests
 	{
 		var doc = new MdDocument();
 		
-		var paragraph = new MdParagraph();
-		paragraph.Add(new MdPlainText("Here is **some content** for the note."));
-		paragraph.Add(new MdLink("And here is an extra link", "https://google.co.uk"));
+		var paragraph = new MdParagraph()
+			.Add(new MdBoldText("Here is some content for the note."))
+			.Add(new MdLink("And here is an extra link", "https://google.co.uk"));
 		
 		doc.Add(new MdDocusaurusAdmonition(AdmonitionType.Note, 
 			paragraph, 
@@ -63,7 +65,7 @@ public class MdDocusaurusAdmonitionTests
 			"""
 			:::note Custom Title
 
-			Here is **some content** for the note. [And here is an extra link](https://google.co.uk) 
+			**Here is some content for the note.** [And here is an extra link](https://google.co.uk) 
 
 			:::
 
