@@ -2,13 +2,13 @@ using FluentAssertions;
 
 namespace CloudAwesome.MarkdownMaker.Docusaurus.Tests;
 
-public class MdDocuFrontMatterDocsTests
+public class MdDocusaurusFrontMatterDocsTests
 {
 	[Test]
 	public void Docusaurus_Front_Matter_Returns_Valid_Markdown()
 	{
 		var doc = new MdDocument();
-		doc.Add(new MdFrontMatter(new MdDocuFrontMatterDocs
+		doc.Add(new MdFrontMatter(new MdDocusaurusFrontMatterDocs
 		{
 			title = "This is a doc title",
 			hide_title = true,
@@ -35,7 +35,7 @@ public class MdDocuFrontMatterDocsTests
 	public void Docusaurus_Front_Matter_With_Nested_Object_Returns_Valid_Markdown()
 	{
 		var doc = new MdDocument();
-		doc.Add(new MdFrontMatter(new MdDocuFrontMatterDocs
+		doc.Add(new MdFrontMatter(new MdDocusaurusFrontMatterDocs
 		{
 			title = "This is a doc title",
 			last_update = new FrontMatterLastUpdate

@@ -1,6 +1,6 @@
 ﻿namespace CloudAwesome.MarkdownMaker.Docusaurus;
 
-public class MdDocuFrontMatterBlog: IFrontMatter
+public class MdDocusaurusFrontMatterPages: IFrontMatter
 {
 	
 }

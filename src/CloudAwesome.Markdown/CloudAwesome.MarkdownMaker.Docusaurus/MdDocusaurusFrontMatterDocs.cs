@@ -3,7 +3,7 @@
 /// <summary>
 /// Model as defined here: https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter
 /// </summary>
-public class MdDocuFrontMatterDocs: IFrontMatter
+public class MdDocusaurusFrontMatterDocs: IFrontMatter
 {
 	/// <summary>
 	/// A unique document ID.
