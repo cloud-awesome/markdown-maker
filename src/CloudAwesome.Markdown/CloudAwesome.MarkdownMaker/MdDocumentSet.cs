@@ -6,10 +6,15 @@ namespace CloudAwesome.MarkdownMaker
 {
     public class MdDocumentSet
     {
-        public string FolderPath { get; }
+        private string? FolderPath { get; set; }
 
         public List<MdDocument> Documents { get; set; }
 
+        public MdDocumentSet()
+        {
+            Documents = new List<MdDocument>();
+        }
+        
         public MdDocumentSet(string folderPath)
         {
             Documents = new List<MdDocument>();
@@ -22,8 +27,19 @@ namespace CloudAwesome.MarkdownMaker
             return this;
         }
 
+        public void Generate(string folderPath)
+        {
+            FolderPath = folderPath;
+            Generate();
+        }
+
         public void Generate()
         {
+            if (FolderPath == null)
+            {
+                throw new MdInputValidationException("FolderPath cannot be null");
+            }
+            
             this.Validate();
             
             foreach (var document in Documents)

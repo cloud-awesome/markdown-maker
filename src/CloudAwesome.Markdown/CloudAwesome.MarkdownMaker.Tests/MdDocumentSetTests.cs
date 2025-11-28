@@ -50,6 +50,48 @@ namespace CloudAwesome.MarkdownMaker.Tests
             var savedDocument2 = mockFileSystem.GetFile(set.Documents[1].FileName);
             savedDocument2.TextContents.Should().Be($"Just a little account tester!! {Environment.NewLine}");
         }
+        
+        [Test]
+        public void Throws_Exception_If_No_Output_Folder_Provided()
+        {
+            var mockFileSystem = new MockFileSystem();
+
+            var document1 = new MdDocument("contact.md", mockFileSystem)
+                .Add(new MdPlainText("Just a little contact tester!!"));
+            
+            var document2 = new MdDocument("account.md", mockFileSystem)
+                .Add(new MdPlainText("Just a little account tester!!"));
+
+            var set =
+                new MdDocumentSet()
+                    .AddDocument(document1)
+                    .AddDocument(document2);
+            
+            var sut = () => set.Generate();
+            
+            sut.Should().Throw<MdInputValidationException>().WithMessage("FolderPath cannot be null");
+        }
+        
+        [Test]
+        public void Folder_Can_Provided_In_Generate_Method()
+        {
+            var mockFileSystem = new MockFileSystem();
+
+            var document1 = new MdDocument("contact.md", mockFileSystem)
+                .Add(new MdPlainText("Just a little contact tester!!"));
+            
+            var document2 = new MdDocument("account.md", mockFileSystem)
+                .Add(new MdPlainText("Just a little account tester!!"));
+
+            var set =
+                new MdDocumentSet()
+                    .AddDocument(document1)
+                    .AddDocument(document2);
+            
+            set.Generate("C:\\");
+
+            mockFileSystem.AllFiles.Count().Should().Be(2);
+        }
 
         [Test]
         public void Multiple_Documents_In_Set_Are_Created_Using_Fluent_Api()
