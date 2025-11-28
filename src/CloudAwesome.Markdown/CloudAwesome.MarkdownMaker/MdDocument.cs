@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO.Abstractions;
 using System.Text;
 
@@ -20,6 +21,7 @@ namespace CloudAwesome.MarkdownMaker
 
         public MdDocument() : this(String.Empty, new FileSystem()) { }
 
+        [ExcludeFromCodeCoverage(Justification = "Injects real FileSystem outisde of unit tests")]
         public MdDocument(string fileName) : this(fileName, new FileSystem()) { }
 
         public MdDocument(string fileName, IFileSystem fileSystem)

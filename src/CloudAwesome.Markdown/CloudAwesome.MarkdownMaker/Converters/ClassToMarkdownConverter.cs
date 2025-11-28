@@ -1,5 +1,8 @@
-﻿namespace CloudAwesome.MarkdownMaker.Converters;
+﻿using System.Diagnostics.CodeAnalysis;
 
+namespace CloudAwesome.MarkdownMaker.Converters;
+
+[ExcludeFromCodeCoverage(Justification = "Not yet implemented")]
 public class ClassToMarkdownConverter: IDocumentPart
 {
 	public string Markdown { get; }
