@@ -16,7 +16,7 @@ public class ListToMdListConverterTests
 			$"- three {Environment.NewLine}";
 
 		var result = list.ToMdList(MdListType.Unordered);
-		result.Should().Be(expectedMarkdown);
+		result.Markdown.Should().Be(expectedMarkdown);
 	}
 	
 	[Test]
@@ -29,6 +29,6 @@ public class ListToMdListConverterTests
 			$"1. three {Environment.NewLine}";
 
 		var result = list.ToMdList(MdListType.Ordered);
-		result.Should().Be(expectedMarkdown);
+		result.Markdown.Should().Be(expectedMarkdown);
 	}
 }

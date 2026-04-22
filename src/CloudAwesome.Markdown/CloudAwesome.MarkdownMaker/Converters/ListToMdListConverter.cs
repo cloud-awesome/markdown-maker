@@ -2,7 +2,7 @@
 
 public static class ListToMdListConverter 
 {
-    public static string ToMdList(this List<string> list, MdListType listType)
+    public static MdList ToMdList(this List<string> list, MdListType listType)
     {
         var result = new MdList(listType);
 
@@ -11,6 +11,6 @@ public static class ListToMdListConverter
             result.AddItem(listItem);
         }
         
-        return result.Markdown;
+        return result;
     }
 }
