@@ -1,0 +1,89 @@
+name: deploy-to-nuget
+
+on:
+  workflow_dispatch:
+
+run-name: deploy-to-nuget ${{ github.ref_name }}
+
+permissions:
+  contents: read
+
+env:
+  CONFIGURATION: Release
+  SOLUTION_PATH: src/CloudAwesome.Markdown/CloudAwesome.Markdown.sln
+  PACKAGE_PROJECT: src/CloudAwesome.Markdown/CloudAwesome.MarkdownMaker/CloudAwesome.MarkdownMaker.csproj
+  PACKAGE_OUTPUT: artifacts/packages
+  NUGET_SOURCE: https://api.nuget.org/v3/index.json
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Generate package version
+        id: version
+        shell: pwsh
+        run: |
+          $version = (Get-Date).ToUniversalTime().ToString('yyyy.MM.dd.HHss')
+          "package_version=$version" >> $env:GITHUB_OUTPUT
+          "PACKAGE_VERSION=$version" >> $env:GITHUB_ENV
+          Write-Host "Package version: $version"
+
+      - name: Restore
+        shell: pwsh
+        run: dotnet restore "$env:SOLUTION_PATH"
+
+      - name: Build
+        shell: pwsh
+        run: dotnet build "$env:SOLUTION_PATH" --configuration "$env:CONFIGURATION" --no-restore
+
+      - name: Test
+        shell: pwsh
+        run: |
+          dotnet test "$env:SOLUTION_PATH" `
+            --configuration "$env:CONFIGURATION" `
+            --no-build `
+            --filter "Category!=IgnoreInPipeline" `
+            --collect "Code Coverage" `
+            --logger "trx;LogFileName=testresults.trx"
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: '**/TestResults/*.trx'
+
+      - name: Pack
+        shell: pwsh
+        run: |
+          dotnet pack "$env:PACKAGE_PROJECT" `
+            --configuration "$env:CONFIGURATION" `
+            --no-build `
+            --output "$env:PACKAGE_OUTPUT" `
+            /p:PackageVersion="$env:PACKAGE_VERSION" `
+            /p:Version="$env:PACKAGE_VERSION"
+
+      - name: Upload package
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget-package-${{ steps.version.outputs.package_version }}
+          path: '${{ env.PACKAGE_OUTPUT }}/*.nupkg'
+
+      - name: Publish package
+        shell: pwsh
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          dotnet nuget push "$env:PACKAGE_OUTPUT\*.nupkg" `
+            --api-key "$env:NUGET_API_KEY" `
+            --source "$env:NUGET_SOURCE" `
+            --skip-duplicate
