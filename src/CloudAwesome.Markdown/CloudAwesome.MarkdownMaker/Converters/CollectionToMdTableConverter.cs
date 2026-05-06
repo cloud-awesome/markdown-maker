@@ -13,7 +13,7 @@ public static class CollectionToMdTableConverter
         {
             return result;
         }
-
+        
         var items = collection.ToList();
         if (items.Count == 0)
         {

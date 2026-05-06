@@ -83,7 +83,7 @@ public class CollectionToMdTableConverterTests
 			$"| Test4 | 2024 | (empty) | 400.00 | {Environment.NewLine}" +
 			$"{Environment.NewLine}";
 		
-		var result = collection.ToMdTable(false);
+		var result = collection.ToMdTable(ignorePropertiesWithOnlyNullValues: false);
 		result.Should().NotBeNull();
 		
 		var markdown = result.Markdown;
